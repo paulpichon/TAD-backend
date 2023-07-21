@@ -1,7 +1,9 @@
 //express
 const express = require('express');
 //cors
-const cors = require('cors')
+const cors = require('cors');
+//importar funcion para conectar a la BD
+const dbConnection = require('../database/config');
 
 //Clase Server
 class Server {
@@ -15,10 +17,17 @@ class Server {
         this.historiasPath = '/api/historia-tlaxcala';
 
 
+        //metodo para conectar a la BD
+        this.conectarDB();
         //middlewares
         this.middlewares();
         //Llamar metodo routes
         this.routes();
+    }
+    //metodo conexion a base de datos
+    async conectarDB() {
+        //funcion importada para conectar a la BD
+        await dbConnection();
     }
     //middlewares
     middlewares() {
