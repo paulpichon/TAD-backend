@@ -1,5 +1,7 @@
 //express
 const express = require('express');
+//cors
+const cors = require('cors')
 
 //Clase Server
 class Server {
@@ -20,8 +22,12 @@ class Server {
     }
     //middlewares
     middlewares() {
-        //archivos publicos
+        //cors 
+        this.app.use(cors());
+        //archivos publicos / directorio publico
         this.app.use( express.static('public') );
+        //lectura y parsear del body
+        this.app.use( express.json() );
     }
     //Metodo para las rutas de la API
     routes() {
