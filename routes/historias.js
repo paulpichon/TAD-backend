@@ -4,6 +4,10 @@
 
 //Router Express
 const { Router } = require('express');
+// express validator
+const { check } = require('express-validator');
+//validar campos 
+const { validarCampos } = require('../middlewares/db-validators');
 //Importacion de controladores
 const { historiasGet, 
         historiasPost, 
@@ -16,7 +20,12 @@ const router = Router();
 //GET
 router.get('/', historiasGet);
 //POST
-router.post('/', historiasPost);
+router.post('/', [
+    //validar que el titulo no este vacio
+    check('titulo', 'El titulo es obligatorio').trim().notEmpty(),
+    //validar campos
+    validarCampos
+], historiasPost);
 //PUT
 router.put('/:id', historiasPut);
 //DELETE
