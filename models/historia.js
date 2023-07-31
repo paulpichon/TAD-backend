@@ -26,7 +26,9 @@ const historiaSchema = Schema({
 historiaSchema.methods.toJSON = function() {
     //desestructurar
     //ocultar la  version
-    const { __v } = this.toObject();
+    const { __v, ...historia } = this.toObject();
+    //retornar la historia
+    return historia;
 }
 //exports
 module.exports = model('Historia', historiaSchema);

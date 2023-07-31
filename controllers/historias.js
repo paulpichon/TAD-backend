@@ -18,7 +18,7 @@ const historiasPost = async(req, res) => {
     //guardar el registro en la BD
     await historia.save();
     //respuesta del servidor
-    res.json( historia );
+    res.json({ historia });
 }
 const historiasPut = (req, res) => {
     res.json({
