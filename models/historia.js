@@ -18,6 +18,7 @@ const historiaSchema = Schema({
     },
     estado_visible: {
         type: Boolean,
+        required: [true, 'El estado de la historia es obligatorio'],
         default: true
     },
     
