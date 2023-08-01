@@ -23,6 +23,10 @@ router.get('/', historiasGet);
 router.post('/', [
     //validar que el titulo no este vacio
     check('titulo', 'El titulo es obligatorio').trim().notEmpty(),
+    //Validar que el texto de l ahistoria no este vacio
+    check('texto', 'El texto no puede estar vacio').trim().notEmpty(),
+    //validar el tipo de Historia: RESUMEN ó EXTENDIDA
+    check('tipo_historia', 'El tipo de Historia debe ser: RESUMEN Ó EXTENDIDA').isIn(['RESUMEN', 'EXTENDIDA']),
     //validar campos
     validarCampos
 ], historiasPost);
