@@ -20,15 +20,31 @@ const historiasPost = async(req, res) => {
     //respuesta del servidor
     res.json(historia);
 }
-const historiasPut = (req, res) => {
-    res.json({
-        msg:'PUT API - CONTROLLERS'
+const historiasPut = async(req, res) => {
+    //Modificar el contenido del POST
+    //ID a modificar
+    const { id } = req.params;
+    //Body
+    const { _id, ...historiaActualizada } = req.body;
+    //Actualizar 
+    const historia = await Historia.findByIdAndUpdate( id, historiaActualizada, {
+        //regresar la respuesta actualizada
+        new: true
     });
+    //respuesta
+    res.json( historia );
 }
-const historiasDelete = (req, res) => {
-    res.json({
-        msg:'DELETE API - CONTROLLERS'
+const historiasDelete = async(req, res) => {
+    //Eliminar historia
+    //ID Historia
+    const { id } = req.params;
+    //Eliminar Historia: se va cambiar el estado_visible de true a false
+    const historia = await Historia.findByIdAndUpdate( id, { estado_visible: false }, {
+        //mostrar la respuesta actualizada
+        new: true
     });
+    //Respuesta
+    res.json( historia );
 }
 //exports
 module.exports = {
