@@ -3,13 +3,23 @@
 //2.- Version resumen
 //importar modelo Historia
 const Historia = require("../models/historia");
-
 //controllers
-const historiasGet = (req, res) => {
+//GET
+const historiasGet = async(req, res) => {
+    //Obtener las historias
+    const [ total, historias ] = await Promise.all([
+        //total de registros(historias)
+        Historia.countDocuments( {estado_visible: true } ),
+        //Get Historias
+        Historia.find( { estado_visible: true })
+    ]);
+    //respuesta
     res.json({
-        msg:'GET API - CONTROLLERS'
+        total,
+        historias
     });
 }
+//POST
 const historiasPost = async(req, res) => {
     //body
     const { titulo, texto, estado_visible, tipo_historia } = req.body;
@@ -20,6 +30,7 @@ const historiasPost = async(req, res) => {
     //respuesta del servidor
     res.json(historia);
 }
+//PUT
 const historiasPut = async(req, res) => {
     //Modificar el contenido del POST
     //ID a modificar
@@ -34,6 +45,7 @@ const historiasPut = async(req, res) => {
     //respuesta
     res.json( historia );
 }
+//DELETE
 const historiasDelete = async(req, res) => {
     //Eliminar historia
     //ID Historia
