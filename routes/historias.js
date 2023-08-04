@@ -44,10 +44,18 @@ router.put('/:id', [
     check('texto', 'El texto no puede estar vacio').optional().trim().notEmpty(),
     //validar el tipo de Historia: RESUMEN ó EXTENDIDA
     check('tipo_historia', 'El tipo de Historia debe ser: RESUMEN Ó EXTENDIDA').optional().isIn(['RESUMEN', 'EXTENDIDA']),
+    //validar los campos
     validarCampos
 ], historiasPut);
 //DELETE
-router.delete('/:id', historiasDelete);
+router.delete('/:id', [
+    //validar que el ID sea valido
+    check('id', 'El ID no es valido').isMongoId(),
+    //Validar que el ID de la Historia exista en la BD
+    check('id').custom( validarIdHistoria ),
+    //validar los campos
+    validarCampos
+], historiasDelete);
 
 
 //exports
