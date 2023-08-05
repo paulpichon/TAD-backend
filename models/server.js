@@ -4,7 +4,6 @@ const express = require('express');
 const cors = require('cors');
 //importar funcion para conectar a la BD
 const dbConnection = require('../database/config');
-
 //Clase Server
 class Server {
     //constructor
@@ -50,7 +49,6 @@ class Server {
             console.log(`Escuchando el puerto ${ this.port }`);
         });
     }
-
 }
 //exports
 module.exports = Server;
