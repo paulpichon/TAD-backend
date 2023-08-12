@@ -14,6 +14,8 @@ class Server {
         this.port = process.env.PORT || 3000;
         //ruta historias tlaxcala
         this.historiasPath = '/api/historia-tlaxcala';
+        // ruta señorios de tlaxcala
+        this.senoriosPath = '/api/senorios';
 
 
         //metodo para conectar a la BD
@@ -40,7 +42,10 @@ class Server {
     //Metodo para las rutas de la API
     routes() {
         /***Rutas***/
+        // Historia Tlaxcala
         this.app.use( this.historiasPath, require('../routes/historias') );
+        // Señorios
+        this.app.use( this.senoriosPath, require('../routes/senorios') );
     }
     //Listener del puerto
     listen() {
