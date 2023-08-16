@@ -1,4 +1,6 @@
 //Aqui se cuentan sobre los 4 señorios de Tlaxcala
+//importar el schema de senorio
+const Senorio = require('../models/senorio');
 
 //controllers
 //GET Señorios
@@ -16,11 +18,14 @@ const senorioGet = (req, res) => {
     });
 }
 //POST
-const senoriosPost = (req, res) => {
-
+const senoriosPost = async(req, res) => {
     //body
-    const senorio = req.body;
-
+    const senorioBody = req.body;
+    console.log(senorioBody);
+    //crear el señorio
+    const senorio = new Senorio( senorioBody );
+    //Guardar en la base de datos
+    await senorio.save();
     // Respuesta
     res.json( senorio );
 }
