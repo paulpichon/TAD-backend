@@ -7,7 +7,7 @@ const { Router } = require('express');
 // express validator
 const { check } = require('express-validator');
 //validar campos 
-const { validarCampos } = require('../middlewares/db-validators');
+const { validarCampos } = require('../middlewares/validar-campos');
 //Importacion de controladores
 const { historiasGet, 
         historiasPost, 
