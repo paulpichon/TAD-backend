@@ -17,10 +17,12 @@ const senorioGet = (req, res) => {
 }
 //POST
 const senoriosPost = (req, res) => {
+
+    //body
+    const senorio = req.body;
+
     // Respuesta
-    res.json({
-        msg: 'POST API'
-    });
+    res.json( senorio );
 }
 //PUT
 const senoriosPut = (req, res) => {

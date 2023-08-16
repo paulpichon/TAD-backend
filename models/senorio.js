@@ -4,8 +4,7 @@ const { Schema, model } = require('mongoose');
 const SenorioSchema = Schema({
     // intro sobre que son los señorios
     que_son_los_senorios:{
-        type: String,
-        required: [true, 'que_son_los_señorios es obligatorio']
+        type: String
     },
     // nombre de los señorios
     nombre: {
