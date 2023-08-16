@@ -2,10 +2,6 @@
 const { Schema, model } = require('mongoose');
 // Schema
 const SenorioSchema = Schema({
-    // intro sobre que son los señorios
-    que_son_los_senorios:{
-        type: String
-    },
     // nombre de los señorios
     nombre: {
         type: String,
