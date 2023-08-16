@@ -21,7 +21,6 @@ const senorioGet = (req, res) => {
 const senoriosPost = async(req, res) => {
     //body
     const senorioBody = req.body;
-    console.log(senorioBody);
     //crear el señorio
     const senorio = new Senorio( senorioBody );
     //Guardar en la base de datos
@@ -30,11 +29,19 @@ const senoriosPost = async(req, res) => {
     res.json( senorio );
 }
 //PUT
-const senoriosPut = (req, res) => {
-    // Respuesta
-    res.json({
-        msg: 'PUT API'
+const senoriosPut = async(req, res) => {
+    //Obtener el ID del señorio
+    const { id } = req.params;
+    //Obtener el body
+    //sacamos el _id, y las demas propiedades los ponemos en un arreglo
+    const { _id, ...resto} = req.body;
+    //Actualizar el registro
+    const senorio = await Senorio.findByIdAndUpdate( id, resto, {
+        //actualizar la respuesta
+        new:true
     });
+    // Respuesta
+    res.json( senorio );
 }
 //DELETE
 const senoriosDelete = (req, res) => {
