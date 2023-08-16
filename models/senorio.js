@@ -43,5 +43,12 @@ const SenorioSchema = Schema({
         required: [true, 'epoca_colonial es obligatorio']
     }
 });
+//quitar visualmente __v en la respuesta/response
+SenorioSchema.methods.toJSON = function() {
+    //desestructurar las propieades a quitar
+    const { __v, ...senorio} = this.toObject();
+    //devolvemos el señorio
+    return senorio;
+}
 // exports
 module.exports = model('Señorio', SenorioSchema);
