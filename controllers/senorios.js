@@ -44,10 +44,17 @@ const senoriosPut = async(req, res) => {
     res.json( senorio );
 }
 //DELETE
-const senoriosDelete = (req, res) => {
+const senoriosDelete = async(req, res) => {
+    // id
+    const { id } = req.params;
+    // borrar fisicamente el registro
+    const senorio = await Senorio.findByIdAndDelete( id, {
+        new: true
+    });
     // Respuesta
     res.json({
-        msg: 'DELETE API'
+        status: 200,
+        msg: 'Señorio eliminado correctamente'
     });
 }
 //exports

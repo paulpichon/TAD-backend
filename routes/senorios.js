@@ -5,6 +5,8 @@ const { Router } = require('express');
 const { check } = require('express-validator');
 //express-validator
 const { validarCampos } = require('../middlewares/validar-campos');
+// Validar ID del señorio
+const { existeIdSenorio } = require('../helpers/db-validators');
 // Importar controladores
 const { senoriosGet, 
         senorioGet,
@@ -43,6 +45,13 @@ router.post('/', [
 //PUT
 router.put('/:id', senoriosPut);
 //DELETE
-router.delete('/:id', senoriosDelete);
+router.delete('/:id', [
+    // Verificar el ID
+    check('id', 'El ID no es valido').isMongoId(),
+    // Verificar que el ID exista en la BD
+    check('id').custom( existeIdSenorio ),
+    //funcion para validar los campos
+    validarCampos
+], senoriosDelete);
 //exports
 module.exports = router;
