@@ -4,10 +4,18 @@ const Senorio = require('../models/senorio');
 
 //controllers
 //GET Señorios
-const senoriosGet = (req, res) => {
+const senoriosGet = async(req, res) => {
+    // Obtener todos los señorios
+    const [ senorios, total] = await Promise.all([
+        // Traer registros
+        Senorio.find(),
+        // Conteo de registros
+        Senorio.countDocuments()
+    ]);
     // Respuesta
     res.json({
-        msg: 'GET ALL API'
+        total,
+        senorios
     });
 }
 //GET Señorio por ID
@@ -54,7 +62,8 @@ const senoriosDelete = async(req, res) => {
     // Respuesta
     res.json({
         status: 200,
-        msg: 'Señorio eliminado correctamente'
+        msg: 'Señorio eliminado correctamente',
+        senorio
     });
 }
 //exports
