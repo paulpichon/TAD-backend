@@ -19,10 +19,14 @@ const senoriosGet = async(req, res) => {
     });
 }
 //GET Señorio por ID
-const senorioGet = (req, res) => {
+const senorioGet = async(req, res) => {
+    // Obtener el ID del señorio
+    const { id } = req.params;
+    // Hacer la consulta
+    const usuario = await Senorio.findById( id );
     // Respuesta
     res.json({
-        msg: 'GET API'
+        usuario
     });
 }
 //POST

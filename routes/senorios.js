@@ -20,7 +20,14 @@ const router = Router();
 //GET ALL
 router.get('/', senoriosGet);
 //GET 
-router.get('/:id', senorioGet);
+router.get('/:id', [
+    // Verificar el ID
+    check('id', 'El ID no es valido').isMongoId(),
+    // Verificar que el ID exista en la BD
+    check('id').custom( existeIdSenorio ),
+    //funcion para validar los campos
+    validarCampos
+], senorioGet);
 //POST
 router.post('/', [  
     //nombre del señorio
