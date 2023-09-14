@@ -4,17 +4,29 @@ const Senorio = require('../models/senorio');
 
 //controllers
 //GET Señorios
-const senoriosGet = (req, res) => {
+const senoriosGet = async(req, res) => {
+    // Obtener todos los señorios
+    const [ senorios, total] = await Promise.all([
+        // Traer registros
+        Senorio.find(),
+        // Conteo de registros
+        Senorio.countDocuments()
+    ]);
     // Respuesta
     res.json({
-        msg: 'GET ALL API'
+        total,
+        senorios
     });
 }
 //GET Señorio por ID
-const senorioGet = (req, res) => {
+const senorioGet = async(req, res) => {
+    // Obtener el ID del señorio
+    const { id } = req.params;
+    // Hacer la consulta
+    const usuario = await Senorio.findById( id );
     // Respuesta
     res.json({
-        msg: 'GET API'
+        usuario
     });
 }
 //POST
@@ -44,10 +56,18 @@ const senoriosPut = async(req, res) => {
     res.json( senorio );
 }
 //DELETE
-const senoriosDelete = (req, res) => {
+const senoriosDelete = async(req, res) => {
+    // id
+    const { id } = req.params;
+    // borrar fisicamente el registro
+    const senorio = await Senorio.findByIdAndDelete( id, {
+        new: true
+    });
     // Respuesta
     res.json({
-        msg: 'DELETE API'
+        status: 200,
+        msg: 'Señorio eliminado correctamente',
+        senorio
     });
 }
 //exports
