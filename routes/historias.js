@@ -25,6 +25,8 @@ router.get('/', historiasGet);
 router.post('/', [
     //validar que el titulo no este vacio
     check('titulo', 'El titulo es obligatorio').trim().notEmpty(),
+    //validar la img
+    check('img_bandera', 'La imagen es obligatoria').trim().notEmpty(),
     //Validar que el texto de l ahistoria no este vacio
     check('texto', 'El texto no puede estar vacio').trim().notEmpty(),
     //validar el tipo de Historia: RESUMEN ó EXTENDIDA

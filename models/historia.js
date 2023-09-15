@@ -7,9 +7,9 @@ const historiaSchema = Schema({
         type: String,
         required: [true, 'El titulo es obligatorio']
     },
-    img: {
+    img_bandera: {
         type: String,
-        required: [true, 'La imagen es obligatoria']
+        required: [true, 'La imagen de la bandera es obligatoria']
     },
     texto: {
         type: String,
