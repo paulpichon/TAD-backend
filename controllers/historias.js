@@ -22,9 +22,9 @@ const historiasGet = async(req, res) => {
 //POST
 const historiasPost = async(req, res) => {
     //body
-    const { titulo, texto, estado_visible, tipo_historia } = req.body;
+    const { titulo, img, texto, estado_visible, tipo_historia } = req.body;
     //mongoose
-    const historia = new Historia({ titulo, texto, estado_visible, tipo_historia });
+    const historia = new Historia({ titulo, img, texto, estado_visible, tipo_historia });
     //guardar el registro en la BD
     await historia.save();
     //respuesta del servidor
