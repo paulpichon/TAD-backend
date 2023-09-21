@@ -23,10 +23,10 @@ const senorioGet = async(req, res) => {
     // Obtener el ID del señorio
     const { id } = req.params;
     // Hacer la consulta
-    const usuario = await Senorio.findById( id );
+    const senorio = await Senorio.findById( id );
     // Respuesta
     res.json({
-        usuario
+        senorio
     });
 }
 //POST
