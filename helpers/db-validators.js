@@ -2,6 +2,8 @@
 const Historia = require("../models/historia");
 //Schema model de Señorio
 const Senorio = require("../models/senorio");
+//Schema model guerrero
+const Guerrero = require("../models/guerrero");
 
 //Funcion para validar que el ID de la Historia exista en la BD
 const validarIdHistoria = async( id = '') => {
@@ -23,8 +25,18 @@ const validarIdSenorio = async( id = '' ) => {
         throw new Error(`El señorio con ID: ${ id } no existe en la BD`);
     }
 }
+//Funcion para validar el ID del guerrero
+const validarIdGuerrero = async( id = '' ) => {
+    //buscar ID en la BD
+    const existeIdGuerrero = await Guerrero.findById( id );
+    //Si no existe el ID mostrar alerta
+    if ( !existeIdGuerrero ) {
+        throw new Error(`El guerrero con ID: ${ id } no existe en la BD`);
+    }
+}
 //exports
 module.exports = {
     validarIdHistoria,
-    validarIdSenorio
+    validarIdSenorio,
+    validarIdGuerrero
 }
