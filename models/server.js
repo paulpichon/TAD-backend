@@ -46,6 +46,8 @@ class Server {
         this.app.use( this.historiasPath, require('../routes/historias') );
         // Señorios
         this.app.use( this.senoriosPath, require('../routes/senorios') );
+        //Guerreros
+        this.app.use( this.guerrerosPath, require('../routes/guerreros') );
     }
     //Listener del puerto
     listen() {
