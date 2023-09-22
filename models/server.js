@@ -16,6 +16,8 @@ class Server {
         this.historiasPath = '/api/historia-tlaxcala';
         // ruta señorios de tlaxcala
         this.senoriosPath = '/api/senorios';
+        //ruta guerreros tlaxcalteca
+        this.guerrerosPath = '/api/guerreros';
 
 
         //metodo para conectar a la BD
