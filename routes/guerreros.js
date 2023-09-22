@@ -48,17 +48,17 @@ router.put('/:id', [
     //verificar que el ID existe en la BD
     check('id').custom( validarIdGuerrero ),
     //validar que no este vacio el campo
-    check('origen', 'El origen es obligatorio').trim().notEmpty(),
+    check('origen', 'El origen es obligatorio').optional().trim().notEmpty(),
     //validar que no este vacio el campo
-    check('antecedentes_familiares', 'Los antecedentes_familiares son obligatorios').trim().notEmpty(),
+    check('antecedentes_familiares', 'Los antecedentes_familiares son obligatorios').optional().trim().notEmpty(),
     //validar que no este vacio el campo
-    check('participacion_conflictos', 'La participacion_conflictos es obligatorio').trim().notEmpty(),
+    check('participacion_conflictos', 'La participacion_conflictos es obligatorio').optional().trim().notEmpty(),
     //validar que no este vacio el campo
-    check('muerte', 'La muerte es obligatoria').trim().notEmpty(),
+    check('muerte', 'La muerte es obligatoria').optional().trim().notEmpty(),
     //validar que no este vacio el campo
-    check('legado', 'El legado es obligatorio').trim().notEmpty(),
+    check('legado', 'El legado es obligatorio').optional().trim().notEmpty(),
     //validar que no este vacio el campo
-    check('imagen', 'La imagen es obligatorio').trim().notEmpty(),
+    check('imagen', 'La imagen es obligatorio').optional().trim().notEmpty(),
     //validar los campos
     validarCampos
 ], guerrerosPut);
