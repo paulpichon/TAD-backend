@@ -1,4 +1,6 @@
 //controladores
+//Schema guerrero
+const Guerrero = require("../models/guerrero");
 
 const guerrerosGet = async(req, res) => {
     //respuesta
@@ -13,10 +15,14 @@ const guerreroGet = async(req, res) => {
     });
 }
 const guerrerosPost = async(req, res) => {
+    //body
+    const body = req.body;
+    //Schema
+    const guerrero = new Guerrero( body );
+    //Guardarlo en la BD
+    await guerrero.save();
     //respuesta
-    res.json({
-        msg: 'POST GUERREROS - CONTROLADOR'
-    });
+    res.json( guerrero );
 }
 const guerrerosPut = async(req, res) => {
     //respuesta
