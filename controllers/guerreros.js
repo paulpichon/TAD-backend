@@ -17,7 +17,7 @@ const guerreroGet = async(req, res) => {
 const guerrerosPost = async(req, res) => {
     //body
     const body = req.body;
-    //Schema
+    //Crear el registro
     const guerrero = new Guerrero( body );
     //Guardarlo en la BD
     await guerrero.save();
@@ -25,10 +25,17 @@ const guerrerosPost = async(req, res) => {
     res.json( guerrero );
 }
 const guerrerosPut = async(req, res) => {
-    //respuesta
-    res.json({
-        msg: 'PUT GUERREROS - CONTROLADOR'
+    //Id
+    const { id } = req.params;
+    //body, quitamos el _id para que no pueda ser modificado en el BODY
+    const {_id, ...resto} = req.body;
+    //Actualizar el registro
+    const guerrero = await Guerrero.findByIdAndUpdate( id, resto, {
+        new: true
     });
+    //respuesta
+    res.json( guerrero );
+    
 }
 const guerrerosDelete = async(req, res) => {
     //respuesta
