@@ -28,5 +28,12 @@ const GuerrerosSchema = Schema({
         required: [true, 'La imagen es obligatoria']
     }
 });
+//no mostrar __v
+GuerrerosSchema.methods.toJSON = function() {
+    //desestructurar y sacar __v
+    const { __v, ...guerrero } = this.toObject();
+    //retornamos guerrero
+    return guerrero;
+}
 //exports
 module.exports = model('Guerrero', GuerrerosSchema);
