@@ -38,9 +38,17 @@ const guerrerosPut = async(req, res) => {
     
 }
 const guerrerosDelete = async(req, res) => {
+    //id
+    const { id } = req.params;
+    //Eliminar registro
+    const guerrero = await Guerrero.findByIdAndDelete( id, {
+        new: true
+    });
     //respuesta
     res.json({
-        msg: 'DELETE GUERREROS - CONTROLADOR'
+        status: 200,
+        msg: 'Guerrero Eliminado',
+        guerrero
     });
 }
 //exports
