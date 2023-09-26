@@ -2,18 +2,21 @@
 //Schema guerrero
 const Guerrero = require("../models/guerrero");
 
+//Obetener Guerreros
 const guerrerosGet = async(req, res) => {
     //respuesta
     res.json({
         msg: 'GET GUERREROS - CONTROLADOR'
     });
 }
+//Obtener Guerrero(Solo uno)
 const guerreroGet = async(req, res) => {
     //respuesta
     res.json({
         msg: 'GET GUERRERO - CONTROLADOR'
     });
 }
+//Crear un guerrero
 const guerrerosPost = async(req, res) => {
     //body
     const body = req.body;
@@ -24,6 +27,7 @@ const guerrerosPost = async(req, res) => {
     //respuesta
     res.json( guerrero );
 }
+//Actualizar un Guerrero
 const guerrerosPut = async(req, res) => {
     //Id
     const { id } = req.params;
@@ -37,6 +41,7 @@ const guerrerosPut = async(req, res) => {
     res.json( guerrero );
     
 }
+//Eliminar un Guerrero
 const guerrerosDelete = async(req, res) => {
     //id
     const { id } = req.params;
