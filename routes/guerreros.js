@@ -23,7 +23,14 @@ const router = Router();
 router.get('/', guerrerosGet);
 //GET
 //Obtener un guerrero por ID
-router.get('/:id', guerreroGet);
+router.get('/:id', [
+    //validar el ID
+    check('id', 'El ID no es valido').isMongoId(),
+    //verificar que el ID existe en la BD
+    check('id').custom( validarIdGuerrero ),
+    //validar los campos
+    validarCampos
+], guerreroGet);
 //POST
 router.post('/', [
     //validar que no este vacio el campo
