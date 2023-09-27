@@ -4,9 +4,11 @@ const Guerrero = require("../models/guerrero");
 
 //Obetener Guerreros
 const guerrerosGet = async(req, res) => {
+    //Traer los registros
+    const guerreros = await Guerrero.find();
     //respuesta
     res.json({
-        msg: 'GET GUERREROS - CONTROLADOR'
+        guerreros
     });
 }
 //Obtener Guerrero(Solo uno)
