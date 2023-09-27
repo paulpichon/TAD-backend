@@ -13,10 +13,12 @@ const guerrerosGet = async(req, res) => {
 }
 //Obtener Guerrero(Solo uno)
 const guerreroGet = async(req, res) => {
+    //Traer un solo guerrero por Id
+    const { id } = req.params;
+    //Buscar el Guerrero
+    const guerrero = await Guerrero.findById( id );
     //respuesta
-    res.json({
-        msg: 'GET GUERRERO - CONTROLADOR'
-    });
+    res.json( guerrero );
 }
 //Crear un guerrero
 const guerrerosPost = async(req, res) => {
