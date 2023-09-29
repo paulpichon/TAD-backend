@@ -6,8 +6,11 @@ const Guerrero = require("../models/guerrero");
 const guerrerosGet = async(req, res) => {
     //Traer los registros
     const guerreros = await Guerrero.find();
+    //Mostrar la cantidad de guerreros(total)
+    const total = await Guerrero.countDocuments();
     //respuesta
     res.json({
+        total,
         guerreros
     });
 }
