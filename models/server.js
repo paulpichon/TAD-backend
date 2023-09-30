@@ -18,6 +18,8 @@ class Server {
         this.senoriosPath = '/api/senorios';
         //ruta guerreros tlaxcalteca
         this.guerrerosPath = '/api/guerreros';
+        //ruta haciendas de Tlaxcala
+        this.haciendasPath = '/api/haciendas';
 
 
         //metodo para conectar a la BD
@@ -50,6 +52,8 @@ class Server {
         this.app.use( this.senoriosPath, require('../routes/senorios') );
         //Guerreros
         this.app.use( this.guerrerosPath, require('../routes/guerreros') );
+        //Haciendas
+        this.app.use( this.haciendasPath, require('../routes/haciendas') );
     }
     //Listener del puerto
     listen() {
