@@ -1,4 +1,4 @@
-//Schema Hacienda
+//Modelo Hacienda
 const Hacienda = require("../models/hacienda");
 
 //Obetener Haciendas
@@ -17,9 +17,18 @@ const haciendaGet = async(req, res) => {
 }
 //Crear un hacienda
 const haciendasPost = async(req, res) => {
+    //body
+    //desestructuramos img para convertirlo a un string con JSON.stringify()
+    const { img, ...resto } = req.body;
+    //crear la hacienda
+    const hacienda = new Hacienda( resto );
+    //JSON.stringify() -> convierte un objeto o valor de JavaScript en una cadena de texto JSON
+    hacienda.img = JSON.stringify( img );
+    //guardar la hacienda
+    await hacienda.save();
     //respuesta
     res.json({
-        msg:'POST HACIENDAS - CONTROLADORES'
+        hacienda
     });
 }
 //Actualizar una hacienda
@@ -33,7 +42,7 @@ const haciendasPut = async(req, res) => {
 const haciendasDelete = async(req, res) => {
     //respuesta
     res.json({
-        msg:' HACIENDAS - CONTROLADORES'
+        msg:'DELETE HACIENDAS - CONTROLADORES'
     });
 }
 //exports
