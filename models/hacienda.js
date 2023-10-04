@@ -4,6 +4,10 @@ const { Schema, model } = require('mongoose');
 
 //Modelo de Haciendas
 const HaciendaSchema = Schema({
+    nombre_hacienda: {
+        type: String,
+        required: [true, 'El nombre de la hacienda es obligatoria']
+    },
     historia: {
         type: String,
         required: [true, 'La historia es obligatoria']
