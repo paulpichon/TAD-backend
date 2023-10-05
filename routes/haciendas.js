@@ -68,6 +68,13 @@ router.put('/:id', [
      validarCampos
 ], haciendasPut);
 //DELETE
-router.delete('/:id', haciendasDelete);
+router.delete('/:id', [
+    //validar el ID
+    check('id', 'El ID no es valido').isMongoId(),
+    //validar que el ID exista en la base de datos
+    check('id').custom( validarIdHacienda ),
+    //validar campos
+    validarCampos
+], haciendasDelete);
 //exports
 module.exports = router;
