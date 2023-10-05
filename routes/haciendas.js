@@ -12,6 +12,8 @@ const { haciendasGet,
 const { check } = require('express-validator');
 //validar campos
 const { validarCampos } = require('../middlewares/validar-campos');
+//Validar si existe la Hacienda por el ID
+const { validarIdHacienda } = require('../helpers/db-validators');
 //Asignar Router a una variable
 const router = Router();
 
@@ -42,7 +44,29 @@ router.post('/', [
     validarCampos
 ], haciendasPost);
 //PUT
-router.put('/:id', haciendasPut);
+router.put('/:id', [
+    //validar el ID
+    check('id', 'El ID no es valido').isMongoId(),
+    //validar que el ID exista en la base de datos
+    check('id').custom( validarIdHacienda ),
+     //validar que nombre_hacienda no este vacio
+     check('nombre_hacienda', 'nombre_hacienda es obligatorio').optional().trim().notEmpty(),
+     //validar historia
+     check('historia', 'historia es obligatorio').optional().trim().notEmpty(),
+     //validar ubicacion
+     check('ubicacion', 'ubicacion es obligatorio').optional().trim().notEmpty(),
+     //validar atractivos
+     check('atractivos', 'atractivos es obligatorio').optional().trim().notEmpty(),
+     //validar img
+     check('img', 'img es obligatorio').optional().trim().notEmpty(),
+     //validar alojamiento
+     check('alojamiento', 'alojamiento es obligatorio : el tipo debe ser booleano true/false').optional().isBoolean( {strict : true} ),
+     //validar eventos
+     check('eventos', 'eventos es obligatorio : el tipo debe ser booleano true/false').optional().isBoolean( {strict : true} ),
+     //validar restaurante
+     check('restaurante', 'restaurante es obligatorio : el tipo debe ser booleano true/false').optional().isBoolean( {strict : true} ),
+     validarCampos
+], haciendasPut);
 //DELETE
 router.delete('/:id', haciendasDelete);
 //exports
