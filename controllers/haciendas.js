@@ -27,16 +27,24 @@ const haciendasPost = async(req, res) => {
     //guardar la hacienda
     await hacienda.save();
     //respuesta
-    res.json({
-        hacienda
-    });
+    res.json( hacienda );
 }
 //Actualizar una hacienda
 const haciendasPut = async(req, res) => {
-    //respuesta
-    res.json({
-        msg:'PUT HACIENDAS - CONTROLADORES'
+    //params
+    //id
+    const { id } = req.params;
+    //body
+    //desestructuramos img para poder convertirlo a un JSON
+    const { img, ...resto } = req.body;
+    //actualizar la Hacienda
+    const hacienda = await Hacienda.findByIdAndUpdate( id, resto, {
+        //respuesta actualizada
+        new: true
     });
+
+    //respuesta
+    res.json( hacienda );
 }
 //Eliminar una hacienda
 const haciendasDelete = async(req, res) => {
