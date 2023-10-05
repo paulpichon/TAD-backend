@@ -47,10 +47,16 @@ const haciendasPut = async(req, res) => {
     res.json( hacienda );
 }
 //Eliminar una hacienda
-const haciendasDelete = async(req, res) => {
+const haciendasDelete = async (req, res) => {
+    //id params
+    const { id } = req.params;
+    //eliminar la hacienda
+    const hacienda = await Hacienda.findByIdAndDelete( id );
     //respuesta
     res.json({
-        msg:'DELETE HACIENDAS - CONTROLADORES'
+        status: 200,
+        msg: 'Hacienda Eliminada',
+        hacienda
     });
 }
 //exports
