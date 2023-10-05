@@ -40,5 +40,13 @@ const HaciendaSchema = Schema({
         required: [true, 'Restaurante es obligatorioa']
     }
 });
+//Quitar visualmente __v
+HaciendaSchema.methods.toJSON = function() {
+    //desestructurar 
+    const { __v, ...hacienda} = this.toObject();
+    //regresamos hacienda
+    return hacienda;
+
+}
 //exports
 module.exports = model('Hacienda', HaciendaSchema);
