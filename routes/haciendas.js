@@ -22,7 +22,14 @@ const router = Router();
 router.get('/', haciendasGet);
 //GET
 //Obtener una Hacienda por ID
-router.get('/:id', haciendaGet);
+router.get('/:id', [
+    //validar el ID
+    check('id', 'El ID no es valido').isMongoId(),
+    //validar que el ID exista en la base de datos
+    check('id').custom( validarIdHacienda ),
+    //validar campos
+    validarCampos
+], haciendaGet);
 //POST
 router.post('/', [
     //validar que nombre_hacienda no este vacio
