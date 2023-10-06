@@ -13,10 +13,12 @@ const haciendasGet = async(req, res) => {
 }
 //Obtener Hacienda(por ID)
 const haciendaGet = async(req, res) => {
+    //id
+    const { id } = req.params;
+    //obtener hacienda por ID
+    const hacienda = await Hacienda.findById( id );
     //respuesta
-    res.json({
-        msg:'GET HACIENDA POR ID - CONTROLADORES'
-    });
+    res.json( hacienda );
 }
 //Crear un hacienda
 const haciendasPost = async(req, res) => {
