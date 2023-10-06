@@ -13,7 +13,7 @@ const haciendasGet = async(req, res) => {
 }
 //Obtener Hacienda(por ID)
 const haciendaGet = async(req, res) => {
-    //id
+    //id params
     const { id } = req.params;
     //obtener hacienda por ID
     const hacienda = await Hacienda.findById( id );
