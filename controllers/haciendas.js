@@ -3,9 +3,12 @@ const Hacienda = require("../models/hacienda");
 
 //Obetener Haciendas
 const haciendasGet = async(req, res) => {
+    //obtener registro haciendas
+    //Se muestran todos los registros
+    const haciendas = await Hacienda.find();
     //respuesta
     res.json({
-        msg:'GET HACIENDAS - CONTROLADORES'
+        haciendas
     });
 }
 //Obtener Hacienda(por ID)
