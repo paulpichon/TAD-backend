@@ -21,6 +21,8 @@ class Server {
         this.guerrerosPath = '/api/guerreros';
         //ruta haciendas de Tlaxcala
         this.haciendasPath = '/api/haciendas';
+        //ruta carvezas tlaxcaltecas
+        this.cervezasPath = '/api/cervezas';
 
 
         //metodo para conectar a la BD
@@ -55,6 +57,8 @@ class Server {
         this.app.use( this.guerrerosPath, require('../routes/guerreros') );
         //Haciendas
         this.app.use( this.haciendasPath, require('../routes/haciendas') );
+        // Cervezas
+        this.app.use( this.cervezasPath, require('../routes/cervezas') );
     }
     //Listener del puerto
     listen() {
