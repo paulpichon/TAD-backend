@@ -21,7 +21,7 @@ const HaciendaSchema = Schema({
         required: [true, 'Los atractivos son obligatorios']
     },
     img: {
-        type: String,
+        type: Object,
         required: [true, 'Imagenes son obligatorias']
     },
     //true / false
