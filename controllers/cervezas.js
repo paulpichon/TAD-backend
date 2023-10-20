@@ -1,6 +1,6 @@
-//Aqui se cuentan sobre los 4 señorios de Tlaxcala
-//importar el schema de senorio
-const Senorio = require('../models/senorio');
+//Cervezas artesanales de Tlaxcala
+//importar el schema de la cerveza
+const Cerveza = require('../models/cerveza');
 
 //controllers
 //GET Señorios
@@ -18,11 +18,15 @@ const cervezaGet = async(req, res) => {
     });
 }
 //POST
-const cervezasPost = async(req, res) => {
+const cervezasPost = async (req, res) => {
+    //body
+    const body = req.body;
+    //crear la cerveza
+    const cerveza = new Cerveza( body );
+    //guardar el registro en la BD
+    await cerveza.save();
     //respuesta
-    res.json({
-        msg: 'POST'
-    });
+    res.json( cerveza );
 }
 //PUT
 const cervezasPut = async(req, res) => {
