@@ -11,6 +11,10 @@ const CervezaSchema = Schema({
         type: String,
         required: [true, 'La procedencia de la cerveza es obligatoria']
     },
+    estado: {
+        type: String,
+        default: 'Tlaxcala'
+    },
     correo: {
         type: String,
         required: [true, 'El correo es obligatorio']
