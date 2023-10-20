@@ -8,7 +8,7 @@ const CervezaSchema = Schema({
         required: [true, 'La marca de cerveza es obligatoria']
     },
     procedencia: {
-        type: String,
+        type: Object,
         required: [true, 'La procedencia de la cerveza es obligatoria']
     },
     estado: {
@@ -32,7 +32,11 @@ const CervezaSchema = Schema({
         type: Boolean,
         default: true
     },
-    img: {
+    logo: {
+        type: String,
+        default: 'No imagen'
+    },
+    img_cerveza: {
         type: String,
         default: 'No imagen'
     }
