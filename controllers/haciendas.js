@@ -24,11 +24,9 @@ const haciendaGet = async(req, res) => {
 const haciendasPost = async(req, res) => {
     //body
     //desestructuramos img para convertirlo a un string con JSON.stringify()
-    const { img, ...resto } = req.body;
+    const body = req.body;
     //crear la hacienda
-    const hacienda = new Hacienda( resto );
-    //JSON.stringify() -> convierte un objeto o valor de JavaScript en una cadena de texto JSON
-    hacienda.img = JSON.stringify( img );
+    const hacienda = new Hacienda( body );
     //guardar la hacienda
     await hacienda.save();
     //respuesta
