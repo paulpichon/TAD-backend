@@ -34,6 +34,4 @@ const CervezaSchema = Schema({
     }
 });
 //exports
-module.exports = {
-    CervezaSchema
-}
+module.exports = model('Cerveza', CervezaSchema);
