@@ -30,10 +30,17 @@ const cervezasPost = async (req, res) => {
 }
 //PUT
 const cervezasPut = async(req, res) => {
-    //respuesta
-    res.json({
-        msg: 'PUT API'
+    //id
+    const { id } = req.params;
+    //body
+    const body = req.body;
+    //actualizar el registro
+    const cerveza = await Cerveza.findByIdAndUpdate( id, body, {
+        //actualizar respuesta
+        new: true
     });
+    //respuesta
+    res.json( cerveza );
 }
 //DELETE
 const cervezasDelete = async(req, res) => {
