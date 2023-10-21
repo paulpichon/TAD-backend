@@ -41,5 +41,12 @@ const CervezaSchema = Schema({
         default: 'No imagen'
     }
 });
+//no mostrar __v
+CervezaSchema.methods.toJSON = function() {
+    //desestructurar la propiedad que no queremos mostrar
+    const { __v, ...cerveza } = this.toObject();
+    //retornar cerveza
+    return cerveza;
+}
 //exports
 module.exports = model('Cerveza', CervezaSchema);
