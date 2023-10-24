@@ -11,6 +11,7 @@ const { cervezasGet,
 const { validarCampos } = require('../middlewares/validar-campos');
 //express validator
 const { check } = require('express-validator');
+const { validarIdCerveza } = require('../helpers/db-validators');
 //Asignar Router a una variable
 const router = Router();
 
@@ -37,7 +38,27 @@ router.post('/', [
     validarCampos
 ], cervezasPost);
 //PUT
-router.put('/:id', cervezasPut);
+router.put('/:id', [
+    //validar ID
+    check('id', 'El ID no es valido').isMongoId(),
+    //validar existencia ID
+    check('id').custom( validarIdCerveza ),
+    //validar marca
+    check('marca_cerveza').optional().trim().notEmpty(),
+    //validar procedencia
+    //validar un array
+    check('procedencia', 'La procedencia es obligatoria, debe tener minimo 1').optional().trim().isArray({ min:1 }).notEmpty(),
+    //validar Correo
+    check('correo', 'El correo es obligatorio').optional().isEmail(),
+    //telefono
+    check('telefono', 'El telefono es obligatorio').optional().trim().notEmpty(),
+    //razon_social
+    check('razon_social', 'La razon social es obligatoria').optional().trim().notEmpty(),
+    //logo de cerveceria
+    check('logo', 'El logo es obligatorio').optional().trim().notEmpty(),
+    //validar campos
+    validarCampos
+], cervezasPut);
 //DELETE
 router.delete('/:id', cervezasDelete);
 //exports

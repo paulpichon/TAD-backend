@@ -4,8 +4,10 @@ const Historia = require("../models/historia");
 const Senorio = require("../models/senorio");
 //Schema model guerrero
 const Guerrero = require("../models/guerrero");
-//Modelo Hacienda
+// Modelo Hacienda
 const Hacienda = require("../models/hacienda");
+// Modelo Cerveza
+const Cerveza = require("../models/cerveza");
 
 //Funcion para validar que el ID de la Historia exista en la BD
 const validarIdHistoria = async( id = '') => {
@@ -42,7 +44,16 @@ const validarIdHacienda = async ( id = '') => {
     const existeIdHacienda = await Hacienda.findById( id );
     //si no existe el ID mostramos una alerta
     if ( !existeIdHacienda ) {
-        throw new Error(`La hacienda con ID: ${ id } no existe`);
+        throw new Error(`La hacienda con ID: ${ id } no existe.`);
+    }
+}
+//Validar el ID de la cerveza
+const validarIdCerveza = async ( id = '') => {
+    //buscar Cerveza por ID
+    const existeIdCerveza = await Cerveza.findById( id );
+    //si no existe el ID mostramos una alerta
+    if ( !existeIdCerveza ) {
+        throw new Error(`La cerveza con ID: ${ id } no existe.`);
     }
 }
 //exports
@@ -50,5 +61,6 @@ module.exports = {
     validarIdHistoria,
     validarIdSenorio,
     validarIdGuerrero,
-    validarIdHacienda
+    validarIdHacienda,
+    validarIdCerveza
 }
