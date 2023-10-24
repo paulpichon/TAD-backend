@@ -43,10 +43,17 @@ const cervezasPut = async(req, res) => {
     res.json( cerveza );
 }
 //DELETE
-const cervezasDelete = async(req, res) => {
+const cervezasDelete = async (req, res) => {
+    //id
+    const { id } = req.params;
+    //En lugar de borrar fisicamente el registro, se actualiza la disponibilidad a false
+    const cerveza = await Cerveza.findByIdAndUpdate( id, { disponible: false }, {
+        //respuesta actualizada
+        new: true
+    });
     //respuesta
     res.json({
-        msg: 'DELETE API'
+        cerveza
     });
 }
 //exports

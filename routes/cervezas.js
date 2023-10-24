@@ -60,6 +60,13 @@ router.put('/:id', [
     validarCampos
 ], cervezasPut);
 //DELETE
-router.delete('/:id', cervezasDelete);
+router.delete('/:id', [
+    //validar ID
+    check('id', 'El ID no es valido').isMongoId(),
+    //validar existencia ID
+    check('id').custom( validarIdCerveza ),
+    //validar campos
+    validarCampos
+], cervezasDelete);
 //exports
 module.exports = router;
