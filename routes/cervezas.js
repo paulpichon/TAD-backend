@@ -32,8 +32,6 @@ router.post('/', [
     check('telefono', 'El telefono es obligatorio').trim().notEmpty(),
     //razon_social
     check('razon_social', 'La razon social es obligatoria').trim().notEmpty(),
-    //logo de cerveceria
-    check('logo', 'El logo es obligatorio').trim().notEmpty(),
     //validar campos
     validarCampos
 ], cervezasPost);
@@ -54,8 +52,6 @@ router.put('/:id', [
     check('telefono', 'El telefono es obligatorio').optional().trim().notEmpty(),
     //razon_social
     check('razon_social', 'La razon social es obligatoria').optional().trim().notEmpty(),
-    //logo de cerveceria
-    check('logo', 'El logo es obligatorio').optional().trim().notEmpty(),
     //validar campos
     validarCampos
 ], cervezasPut);
