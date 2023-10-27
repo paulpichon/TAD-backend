@@ -5,9 +5,32 @@ const Cerveza = require('../models/cerveza');
 //controllers
 //GET Señorios
 const cervezasGet = async(req, res) => {
+    //query params
+    const { limite = 4, desde = 0 } = req.query;
+    //Parametro para traer los registros
+    const query = { disponible : true };
+    //Mostrar todos los registros
+    /*const usuarios = await Cerveza.find( query )
+        //limite de resultados    
+        .limit( limite )
+        //desde
+        .skip( desde );*/
+    //total de registros
+    //const total = await Cerveza.countDocuments( query );
+
+    const [ total, usuarios ] = await Promise.all([
+        Cerveza.countDocuments( query ),
+        Cerveza.find( query )
+            //limite de resultados    
+            .limit( limite )
+            //desde
+            .skip( desde )
+    ]);
+
     //respuesta
     res.json({
-        msg: 'GET(S) API'
+        total,
+        usuarios
     });
 }
 //GET Señorio por ID
