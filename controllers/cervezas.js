@@ -4,20 +4,13 @@ const Cerveza = require('../models/cerveza');
 
 //controllers
 //GET Señorios
-const cervezasGet = async(req, res) => {
+const cervezasGet = async (req, res) => {
     //query params
     const { limite = 4, desde = 0 } = req.query;
     //Parametro para traer los registros
     const query = { disponible : true };
     //Mostrar todos los registros
-    /*const usuarios = await Cerveza.find( query )
-        //limite de resultados    
-        .limit( limite )
-        //desde
-        .skip( desde );*/
-    //total de registros
-    //const total = await Cerveza.countDocuments( query );
-
+    //Y mostrar la cantidad de registros
     const [ total, usuarios ] = await Promise.all([
         Cerveza.countDocuments( query ),
         Cerveza.find( query )
@@ -26,7 +19,6 @@ const cervezasGet = async(req, res) => {
             //desde
             .skip( desde )
     ]);
-
     //respuesta
     res.json({
         total,
@@ -34,10 +26,14 @@ const cervezasGet = async(req, res) => {
     });
 }
 //GET Señorio por ID
-const cervezaGet = async(req, res) => {
+const cervezaGet = async (req, res) => {
+    //Id
+    const { id } = req.params;
+    // Buscar en la BD por el ID
+    const cerveza = await Cerveza.findById( id );
     //respuesta
     res.json({
-        msg: 'GET API'
+        cerveza
     });
 }
 //POST
@@ -52,7 +48,7 @@ const cervezasPost = async (req, res) => {
     res.json( cerveza );
 }
 //PUT
-const cervezasPut = async(req, res) => {
+const cervezasPut = async (req, res) => {
     //id
     const { id } = req.params;
     //body
