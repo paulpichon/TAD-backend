@@ -11,7 +11,7 @@ const cervezasGet = async (req, res) => {
     const query = { disponible : true };
     //Mostrar todos los registros
     //Y mostrar la cantidad de registros
-    const [ total, usuarios ] = await Promise.all([
+    const [ total, cervezas ] = await Promise.all([
         Cerveza.countDocuments( query ),
         Cerveza.find( query )
             //limite de resultados    
@@ -22,7 +22,7 @@ const cervezasGet = async (req, res) => {
     //respuesta
     res.json({
         total,
-        usuarios
+        cervezas
     });
 }
 //GET Señorio por ID
